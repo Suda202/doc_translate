@@ -65,7 +65,7 @@
 2. **下载/复制文件**：
    - 如果是 arxiv 链接：直接下载 PDF 到 ~/Downloads/doc_translate/{文件名}.pdf
    - 如果是本地文件：复制到 ~/Downloads/doc_translate/{文件名}.pdf
-3. **复制到允许访问的目录**：Playwright MCP 只能访问项目目录（如 /Users/suda/project/coding/doc_translate/），需要先将文件复制到该目录
+3. **复制到允许访问的目录**：Playwright MCP 只能访问项目目录（需配置环境变量 DOC_TRANSLATE_PLAYWRIGHT_DIR），需要先将文件复制到该目录
 4. **检查配置**：读取 ~/.config/doc_translate/config.json
    - 无配置：使用 AskUserQuestion 询问导出格式
    - 有配置：使用 AskUserQuestion 询问是否沿用
