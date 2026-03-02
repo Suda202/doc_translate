@@ -25,7 +25,7 @@
 ## 使用方式
 
 ```
-/immersive-translate-doc <arxiv链接或本地文件路径>
+/immersive-translate-doc <arxiv链接或本地文件路径> [更多文件...]
 ```
 
 ## 示例
@@ -36,6 +36,9 @@
 
 # 翻译本地 PDF
 /immersive-translate-doc ~/Downloads/paper.pdf
+
+# 批量翻译（Pro 会员）
+/immersive-translate-doc https://arxiv.org/abs/2309.01431 ~/Downloads/paper1.pdf ~/Downloads/paper2.pdf
 ```
 
 ## 配置
