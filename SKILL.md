@@ -74,7 +74,7 @@
    - 轮询检查翻译额度变化或页面状态
 7. **下载翻译文件**：
    - 从预览页面提取下载链接（分析页面中的 <a> 标签 href 属性）
-   - 使用 curl 直接下载到 ~/Downloads/doc_translate/
-   - 注意下载的是 zip 包，需要解压
+   - 选择包含 `babeldoc-batch-download-pdf` 但**不包含** `zip` 的链接
+   - 使用 curl 直接下载 PDF 到 ~/Downloads/doc_translate/
    - 根据导出格式重命名：{原始文件名}_双语.pdf 或 {原始文件名}_译文.pdf
 8. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
