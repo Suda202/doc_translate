@@ -1,6 +1,6 @@
 # Immersive Translate 文档翻译
 
-使用 Immersive Translate (BabelDOC) 自动翻译 PDF 文档的 AI Skill。**BabelDOC 功能需要 Immersive Translate 会员才能使用。**适用于 Claude Code、Codex 等支持 Skills 的 AI 助手。
+使用 Immersive Translate (BabelDOC) 自动翻译 PDF 文档的 AI Skill。适用于 Claude Code、Codex 等支持 Skills 的 AI 助手。
 
 ## 功能
 
@@ -9,13 +9,13 @@
 - 自动上传并翻译
 - 自动下载翻译后的文件
 
-> **注意**：BabelDOC 文档翻译功能为 Immersive Translate 会员专属功能，需要订阅后才能使用。
+> **注意**：BabelDOC 文档翻译功能有免费额度（按 Token 计量），会员可获得更高额度。如需使用 Claude、GPT-5、Gemini 等顶级 AI 翻译模型，需订阅 Pro/Max 会员。
 
 ## 前置要求
 
 1. **Claude Code** 已安装
 2. **Playwright MCP** 已配置
-3. **Immersive Translate 会员账号**
+3. **Immersive Translate 账号**（免费版可用，会员额度更高）
 
 ## 安装
 
