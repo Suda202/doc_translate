@@ -58,11 +58,7 @@
 ### 自定义工作目录
 
 ```bash
-# 翻译文件保存目录
 export DOC_TRANSLATE_DIR="/your/custom/path"
-
-# Playwright 可访问的目录（需要是 Claude 项目目录）
-export DOC_TRANSLATE_PLAYWRIGHT_DIR="/your/project/path"
 ```
 
 ## 文件说明

@@ -16,8 +16,7 @@ WORK_DIR="${DOC_TRANSLATE_DIR:-$HOME/Downloads/doc_translate}"
 mkdir -p "$WORK_DIR"
 
 # Playwright 可访问的目录（需要在项目目录下）
-# 默认值，可通过环境变量覆盖
-PLAYWRIGHT_DIR="${DOC_TRANSLATE_PLAYWRIGHT_DIR:-$HOME/project/coding/doc_translate}"
+PLAYWRIGHT_DIR="$HOME/project/coding/doc_translate"
 mkdir -p "$PLAYWRIGHT_DIR"
 
 # 处理所有输入文件
