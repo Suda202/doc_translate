@@ -1,6 +1,6 @@
 # Immersive Translate 文档翻译
 
-使用 Immersive Translate (BabelDOC) 自动翻译 PDF 文档的 Skill。适用于 Claude Code、OpenClaw 等支持 Skills 的 AI 助手。
+使用 Immersive Translate (BabelDOC) 自动翻译 PDF 文档的 Skill。适用于 Claude Code、OpenClaw 等支持 Skills 的 agent。
 
 ## 典型场景
 
