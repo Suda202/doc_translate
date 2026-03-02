@@ -11,13 +11,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# 工作目录
+# 工作目录（用于保存原始文件和翻译后的文件）
 WORK_DIR="${DOC_TRANSLATE_DIR:-$HOME/Downloads/doc_translate}"
 mkdir -p "$WORK_DIR"
-
-# Playwright 可访问的目录（需要在项目目录下）
-PLAYWRIGHT_DIR="$HOME/project/coding/doc_translate"
-mkdir -p "$PLAYWRIGHT_DIR"
 
 # 处理所有输入文件
 FILES=()
@@ -50,7 +46,7 @@ for INPUT in "$@"; do
 
         FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
     else
-        # 本地文件
+        # 本地文件，直接使用源文件路径
         if [ ! -f "$INPUT" ]; then
             echo "文件不存在: $INPUT"
             continue
@@ -59,17 +55,10 @@ for INPUT in "$@"; do
         # 获取绝对路径和原始文件名
         FILE_PATH=$(readlink -f "$INPUT")
         ORIGINAL_NAME=$(basename "$FILE_PATH" .pdf)
-
-        # 复制到工作目录
-        cp "$FILE_PATH" "$WORK_DIR/${ORIGINAL_NAME}.pdf"
-        FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
     fi
 
-    # 复制到 Playwright 可访问的目录
-    cp "$FILE_PATH" "$PLAYWRIGHT_DIR/${ORIGINAL_NAME}.pdf"
-
     echo "文件: $ORIGINAL_NAME"
-    echo "已复制到: $PLAYWRIGHT_DIR/${ORIGINAL_NAME}.pdf"
+    echo "路径: $FILE_PATH"
     echo ""
 
     FILES+=("$ORIGINAL_NAME")
