@@ -16,6 +16,7 @@
 1. **Claude Code** 已安装
 2. **Playwright MCP** 已配置
 3. **Immersive Translate 账号**（免费版可用，会员额度更高）
+4. **首次使用需登录账号**（登录后网站会记住登录状态）
 
 ## 安装
 
