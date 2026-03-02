@@ -20,12 +20,7 @@
 
 ## 安装
 
-```bash
-# 复制 Skill 到 Claude Code 目录
-cp -r immersive-translate-doc ~/.claude/skills/
-
-# 或使用 skill-creator 技能安装
-```
+告诉 Claude Code：`/install https://github.com/Suda202/doc_translate`
 
 ## 使用方式
 
@@ -51,7 +46,7 @@ cp -r immersive-translate-doc ~/.claude/skills/
 - 翻译服务（推荐 Kimi + DeepSeek）
 - 术语库（可多选）
 - 目标语言
-- 导出格式（双语/仅译文/不下载）
+- 导出格式（双语/仅译文/不导出）
 
 选择后会保存配置，下次使用自动沿用。
 
