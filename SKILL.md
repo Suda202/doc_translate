@@ -31,9 +31,9 @@
 
 **后续使用**：
 1. 读取已保存的配置文件
-2. 使用 AskUserQuestion 询问：
-   - "沿用配置" - 使用保存的设置直接翻译
-   - "重新选择" - 在网站上选择新配置
+2. 使用 AskUserQuestion 询问是否沿用
+   - "沿用配置"：完全自动化（不上传网站，直接后台翻译）
+   - "重新选择"：打开浏览器，在网站上选择新配置
 
 **配置保存位置**：`~/.config/doc_translate/config.json`
 
@@ -50,14 +50,16 @@
 3. **检查配置**：读取 ~/.config/doc_translate/config.json
    - 无配置：使用 AskUserQuestion 询问导出格式
    - 有配置：使用 AskUserQuestion 询问是否沿用
-4. **复制文件**：复制 PDF 到 ~/Downloads/doc_translate/{原始文件名}.pdf
-5. **打开网站**：使用 Playwright 打开 https://app.immersivetranslate.com/babel-doc/
-6. **上传文件**：点击"上传文件并翻译"按钮，上传 PDF
-7. **等待配置**：等待用户在网站上选择翻译配置
-8. **开始翻译**：用户点击"立即翻译"后，进入等待阶段
-9. **监控状态**：每 1 分钟轮询翻译状态，直到显示"已完成"
-10. **自动下载**：
-    - 双语：下载双语 PDF 到 ~/Downloads/doc_translate/原始文件名_双语.pdf
-    - 仅译文：下载仅译文 PDF 到 ~/Downloads/doc_translate/原始文件名_译文.pdf
-    - 不导出：提示用户在网站上查看
-11. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
+4. **沿用配置流程**（无需打开浏览器）：
+   - 复制 PDF 到 ~/Downloads/doc_translate/{原始文件名}.pdf
+   - 调用 BabelDOC API 上传并翻译（后台自动完成）
+   - 轮询状态，每 1 分钟检查一次
+   - 完成后自动下载到 ~/Downloads/doc_translate/
+5. **首次/重新选择流程**（需要打开浏览器）：
+   - 复制 PDF 到 ~/Downloads/doc_translate/{原始文件名}.pdf
+   - 打开浏览器，上传文件
+   - 等待用户在网站上选择配置
+   - 用户点击"立即翻译"
+   - 轮询状态，每 1 分钟检查一次
+   - 自动下载
+6. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
