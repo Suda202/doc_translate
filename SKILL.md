@@ -46,20 +46,28 @@
 ## 实现步骤
 
 1. **解析输入**：判断是 arxiv 链接还是本地文件
-2. **转换下载**：如果是 arxiv 链接，转换为 PDF 下载地址并下载
+2. **下载/复制文件**：
+   - 如果是 arxiv 链接：直接下载 PDF 到 ~/Downloads/doc_translate/{文件名}.pdf
+   - 如果是本地文件：复制到 ~/Downloads/doc_translate/{文件名}.pdf
 3. **检查配置**：读取 ~/.config/doc_translate/config.json
    - 无配置：使用 AskUserQuestion 询问导出格式
    - 有配置：使用 AskUserQuestion 询问是否沿用
-4. **沿用配置流程**（无需打开浏览器）：
-   - 复制 PDF 到 ~/Downloads/doc_translate/{原始文件名}.pdf
-   - 调用 BabelDOC API 上传并翻译（后台自动完成）
+4. **沿用配置流程**（显示浏览器）：
+   - 使用 Playwright MCP 打开网站
+   - 上传 PDF 文件
+   - 配置已自动应用，点击"立即翻译"
    - 轮询状态，每 1 分钟检查一次
-   - 完成后自动下载到 ~/Downloads/doc_translate/
-5. **首次/重新选择流程**（需要打开浏览器）：
-   - 复制 PDF 到 ~/Downloads/doc_translate/{原始文件名}.pdf
-   - 打开浏览器，上传文件
-   - 等待用户在网站上选择配置
-   - 用户点击"立即翻译"
-   - 轮询状态，每 1 分钟检查一次
-   - 自动下载
+   - 完成后自动下载，根据导出格式重命名：
+     - 双语 → {原始文件名}_双语.pdf
+     - 仅译文 → {原始文件名}_译文.pdf
+     - 保存到 ~/Downloads/doc_translate/
+5. **首次/重新选择流程**（显示浏览器）：
+   - 使用 Playwright MCP 打开网站
+   - 上传文件
+   - 等待你在网站上选择翻译配置
+   - 你点击"立即翻译"后，继续轮询状态
+   - 完成后自动下载，根据导出格式重命名：
+     - 双语 → {原始文件名}_双语.pdf
+     - 仅译文 → {原始文件名}_译文.pdf
+     - 保存到 ~/Downloads/doc_translate/
 6. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
