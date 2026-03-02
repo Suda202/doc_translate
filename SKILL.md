@@ -110,25 +110,4 @@
    - 重复场景二的步骤
    - 当前一个完成后再处理下一个
 6. **保存配置**
-1. **解析输入**：判断是 arxiv 链接还是本地文件
-2. **下载/复制文件**：
-   - 如果是 arxiv 链接：直接下载 PDF 到 ~/Downloads/doc_translate/{文件名}.pdf
-   - 如果是本地文件：复制到 ~/Downloads/doc_translate/{文件名}.pdf
-3. **复制到允许访问的目录**：Playwright MCP 只能访问项目目录（如 /Users/suda/project/coding/doc_translate/），需要先将文件复制到该目录
-4. **检查配置**：读取 ~/.config/doc_translate/config.json
-   - 无配置：使用 AskUserQuestion 询问导出格式
-   - 有配置：使用 AskUserQuestion 询问是否沿用
-5. **翻译流程**：
-   - 使用 Playwright MCP 打开网站
-   - 上传 PDF 文件（从允许访问的目录）
-   - 沿用配置：配置已自动应用，点击"立即翻译"
-   - 首次/重新选择：等待你在网站上选择配置，点击"立即翻译"
-6. **监控翻译**：
-   - 翻译提交后会打开预览页面
-   - 轮询检查翻译额度变化或页面状态
-7. **下载翻译文件**：
-   - 从预览页面提取下载链接（分析页面中的 <a> 标签 href 属性）
-   - 选择包含 `babeldoc-batch-download-pdf` 但**不包含** `zip` 的链接
-   - 使用 curl 直接下载 PDF 到 ~/Downloads/doc_translate/
-   - 根据导出格式重命名：{原始文件名}_双语.pdf 或 {原始文件名}_译文.pdf
-8. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
+
