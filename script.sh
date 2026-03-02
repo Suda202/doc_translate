@@ -12,6 +12,14 @@ if [ -z "$INPUT" ]; then
     exit 1
 fi
 
+# 工作目录
+WORK_DIR="${DOC_TRANSLATE_DIR:-$HOME/Downloads/doc_translate}"
+mkdir -p "$WORK_DIR"
+
+# Playwright 可访问的目录（需要在项目目录下）
+PLAYWRIGHT_DIR="/Users/suda/project/coding/doc_translate"
+mkdir -p "$PLAYWRIGHT_DIR"
+
 # 解析输入类型
 if [[ "$INPUT" == *"arxiv.org"* ]]; then
     # arxiv 链接，提取论文 ID
@@ -24,19 +32,19 @@ if [[ "$INPUT" == *"arxiv.org"* ]]; then
         PDF_URL="https://arxiv.org/pdf/${ARXIV_ID}.pdf"
     fi
 
-    # 下载论文
-    TEMP_FILE="/tmp/$(basename "$PDF_URL")"
+    # 获取原始文件名
+    ORIGINAL_NAME=$(basename "$PDF_URL" .pdf)
+
+    # 下载论文到工作目录
     echo "下载论文: $PDF_URL"
-    curl -L -o "$TEMP_FILE" "$PDF_URL"
+    curl -L -o "$WORK_DIR/${ORIGINAL_NAME}.pdf" "$PDF_URL"
 
     if [ $? -ne 0 ]; then
         echo "下载失败"
         exit 1
     fi
 
-    # 获取原始文件名
-    ORIGINAL_NAME=$(basename "$TEMP_FILE" .pdf)
-    FILE_PATH="$TEMP_FILE"
+    FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
 else
     # 本地文件
     if [ ! -f "$INPUT" ]; then
@@ -47,18 +55,17 @@ else
     # 获取绝对路径和原始文件名
     FILE_PATH=$(readlink -f "$INPUT")
     ORIGINAL_NAME=$(basename "$FILE_PATH" .pdf)
+
+    # 复制到工作目录
+    cp "$FILE_PATH" "$WORK_DIR/${ORIGINAL_NAME}.pdf"
+    FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
 fi
 
-# 工作目录
-WORK_DIR="${DOC_TRANSLATE_DIR:-$HOME/Downloads/doc_translate}"
-mkdir -p "$WORK_DIR"
-
-# 复制文件到工作目录，保留原始文件名
-COPY_FILE="$WORK_DIR/${ORIGINAL_NAME}.pdf"
-cp "$FILE_PATH" "$COPY_FILE"
+# 复制到 Playwright 可访问的目录
+cp "$FILE_PATH" "$PLAYWRIGHT_DIR/${ORIGINAL_NAME}.pdf"
 
 echo "文件: $ORIGINAL_NAME"
-echo "已复制到: $COPY_FILE"
+echo "已复制到: $PLAYWRIGHT_DIR/${ORIGINAL_NAME}.pdf"
 echo "开始翻译流程..."
 
 # 后续步骤在 Claude 会话中执行，使用 Playwright MCP
