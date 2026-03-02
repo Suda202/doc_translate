@@ -29,13 +29,14 @@
 ## 配置流程
 
 **首次使用**：
-1. 上传文件后在网站上选择翻译配置：
-   - 翻译服务（推荐 Kimi + DeepSeek）
+1. 上传文件后在网站上选择翻译配置
+2. **自动从网页提取所有配置选项**，保存到配置文件：
+   - 翻译服务
    - 目标语言
    - 术语库
    - 是否自动提取术语
    - 导出格式（双语/仅译文/不导出）
-2. 自动保存所有设置到配置文件
+   - 其他所有可配置项
 
 **后续使用**：
 1. 读取已保存的配置文件 `~/.config/doc_translate/config.json`
@@ -92,7 +93,7 @@
    - 选择包含 `babeldoc-batch-download-pdf` 但**不包含** `zip` 的链接
    - 使用 curl 直接下载 PDF 到 ~/Downloads/doc_translate/
    - 根据导出格式重命名：{原始文件名}_双语.pdf 或 {原始文件名}_译文.pdf
-8. **保存配置**：将本次使用的配置保存到 ~/.config/doc_translate/config.json
+8. **保存配置**：从网页提取所有配置选项，保存到 ~/.config/doc_translate/config.json
 
 ### 场景三：批量翻译
 
