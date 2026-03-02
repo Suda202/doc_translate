@@ -48,12 +48,12 @@
 ### 场景一：从翻译历史下载（最快）
 1. 使用 Playwright MCP 打开 https://app.immersivetranslate.com/babel-doc/
 2. 在翻译历史列表中查找目标文件
-3. 点击该记录展开详情（显示下载按钮）
-4. 使用 browser_evaluate 提取下载链接：
+3. 点击该记录的 radio button 选中文件
+4. 顶部会出现"下载仅译文 PDF"和"下载双语 PDF"按钮
+5. 直接点击需要的下载按钮
+6. 使用 browser_evaluate 提取链接并用 curl 下载
    - 选择包含 `babeldoc-batch-download-pdf` 但**不包含** `zip` 的链接
-   - 即 `/babeldoc-batch-download-pdf?type=dual/translated&...` 而不是 `/babeldoc-batch-download-pdf-zip?...`
-5. 使用 curl 直接下载 PDF
-6. 重命名为 {原始文件名}_双语.pdf 或 {原始文件名}_译文.pdf
+7. 重命名为 {原始文件名}_双语.pdf 或 {原始文件名}_译文.pdf
 
 ### 场景二：新文件翻译
 1. **解析输入**：判断是 arxiv 链接还是本地文件
