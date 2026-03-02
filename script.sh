@@ -56,9 +56,11 @@ for INPUT in "$@"; do
         FILE_PATH=$(readlink -f "$INPUT")
         ORIGINAL_NAME=$(basename "$FILE_PATH" .pdf)
 
-        # 复制到工作目录统一管理
-        cp "$FILE_PATH" "$WORK_DIR/${ORIGINAL_NAME}.pdf"
-        FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
+        # 如果文件不在工作目录，则移动到工作目录
+        if [[ "$FILE_PATH" != "$WORK_DIR"* ]]; then
+            mv "$FILE_PATH" "$WORK_DIR/"
+            FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
+        fi
     fi
 
     echo "文件: $ORIGINAL_NAME"
