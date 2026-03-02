@@ -46,7 +46,7 @@ for INPUT in "$@"; do
 
         FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
     else
-        # 本地文件，直接使用源文件路径
+        # 本地文件
         if [ ! -f "$INPUT" ]; then
             echo "文件不存在: $INPUT"
             continue
@@ -55,6 +55,10 @@ for INPUT in "$@"; do
         # 获取绝对路径和原始文件名
         FILE_PATH=$(readlink -f "$INPUT")
         ORIGINAL_NAME=$(basename "$FILE_PATH" .pdf)
+
+        # 复制到工作目录统一管理
+        cp "$FILE_PATH" "$WORK_DIR/${ORIGINAL_NAME}.pdf"
+        FILE_PATH="$WORK_DIR/${ORIGINAL_NAME}.pdf"
     fi
 
     echo "文件: $ORIGINAL_NAME"
