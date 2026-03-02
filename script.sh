@@ -49,14 +49,16 @@ else
     ORIGINAL_NAME=$(basename "$FILE_PATH" .pdf)
 fi
 
-echo "文件: $ORIGINAL_NAME"
-
-# 复制到允许访问的目录（可配置）
+# 工作目录
 WORK_DIR="${DOC_TRANSLATE_DIR:-$HOME/Downloads/doc_translate}"
 mkdir -p "$WORK_DIR"
-COPY_FILE="$WORK_DIR/temp_translate.pdf"
+
+# 复制文件到工作目录，保留原始文件名
+COPY_FILE="$WORK_DIR/${ORIGINAL_NAME}.pdf"
 cp "$FILE_PATH" "$COPY_FILE"
 
+echo "文件: $ORIGINAL_NAME"
+echo "已复制到: $COPY_FILE"
 echo "开始翻译流程..."
 
 # 后续步骤在 Claude 会话中执行，使用 Playwright MCP
